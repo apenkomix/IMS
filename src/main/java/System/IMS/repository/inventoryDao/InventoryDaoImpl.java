@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 public class InventoryDaoImpl implements InventoryDao {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override

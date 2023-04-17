@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class AlertDaoImpl implements AlertDao {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override

@@ -3,6 +3,7 @@ package System.IMS.repository.activityLogDao;
 import System.IMS.entity.ActivityLog;
 import System.IMS.entity.User;
 
+
 import java.util.List;
 
 public interface ActivityLogDao {

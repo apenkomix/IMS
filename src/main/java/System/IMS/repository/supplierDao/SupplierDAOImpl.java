@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,12 +16,8 @@ import java.util.List;
 @Repository
 @Transactional
 public class SupplierDAOImpl implements SupplierDAO {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
-
-    public SupplierDAOImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     @Override
     public void saveOrUpdate(Supplier supplier) {

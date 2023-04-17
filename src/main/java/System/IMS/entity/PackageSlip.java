@@ -9,7 +9,7 @@ public class PackageSlip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_order_id")
     private CustomerOrder customerOrder;
 

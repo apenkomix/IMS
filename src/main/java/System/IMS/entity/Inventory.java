@@ -31,8 +31,6 @@ public class Inventory {
 
     private String location;
 
-    @Column(name = "bom_id")
-    private Long bomId;
 
     // getters and setters
 
@@ -108,13 +106,6 @@ public class Inventory {
         this.location = location;
     }
 
-    public Long getBomId() {
-        return bomId;
-    }
-
-    public void setBomId(Long bomId) {
-        this.bomId = bomId;
-    }
 }
 
 

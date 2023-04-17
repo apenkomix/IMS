@@ -15,7 +15,7 @@ public class Supplier {
 
     private String email;
 
-    private String phone;
+    private Integer phone;
 
 // getters and setters
 
@@ -51,11 +51,11 @@ public class Supplier {
         this.email = email;
     }
 
-    public String getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 }

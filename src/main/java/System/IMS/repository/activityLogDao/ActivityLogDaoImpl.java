@@ -3,7 +3,10 @@ package System.IMS.repository.activityLogDao;
 import System.IMS.entity.ActivityLog;
 import System.IMS.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -14,8 +17,11 @@ import java.util.List;
 @Repository
 @Transactional
 public class ActivityLogDaoImpl implements ActivityLogDao {
-    @Autowired
+
+
+    @PersistenceContext
     private EntityManager entityManager;
+
 
     @Override
     public ActivityLog save(ActivityLog activityLog) {
