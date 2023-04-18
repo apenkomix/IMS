@@ -17,7 +17,7 @@ public class User {
 
     // Constructors, getters, and setters
 
-    public User() {
+    public User(String s) {
     }
 
     public User(String name, String username, String password) {

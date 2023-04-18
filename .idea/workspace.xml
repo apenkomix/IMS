@@ -4,27 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f3fa757-fc40-4488-bf55-6ad4c237f55b" name="Changes" comment="Version 1.0">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/ActivityLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Alert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/BillOfMaterials.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/CustomerOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Forecast.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Invoice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/PackageSlip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/PurchaseOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Report.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Supplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/TransferRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/enams/OrderStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/enams/ValuationMethod.java" afterDir="false" />
+    <list default="true" id="5f3fa757-fc40-4488-bf55-6ad4c237f55b" name="Changes" comment="Version 1.2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/System/IMS/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/System/IMS/repository/activityLogDao/ActivityLogDaoImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/config/PersistenceConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/entity/PackageSlip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/PackageSlip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/Supplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/activityLogDao/ActivityLogDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/activityLogDao/ActivityLogDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/activityLogDao/ActivityLogDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/activityLogDao/ActivityLogDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/alertDao/AlertDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/alertDao/AlertDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/billOfMateriaalsDao/BillOfMaterialsDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/billOfMateriaalsDao/BillOfMaterialsDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/customerOrderDao/CustomerOrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/customerOrderDao/CustomerOrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/forecastDao/ForecastDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/forecastDao/ForecastDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/inventoryDao/InventoryDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/inventoryDao/InventoryDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/invoiceDao/InvoiceDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/invoiceDao/InvoiceDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/packageSlipDao/PackageSlipDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/packageSlipDao/PackageSlipDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/purchaseOrderDao/PurchaseOrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/purchaseOrderDao/PurchaseOrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/reportDao/ReportDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/reportDao/ReportDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/supplierDao/SupplierDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/supplierDao/SupplierDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/System/IMS/repository/transferRequestDao/TransferRequestDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/System/IMS/repository/transferRequestDao/TransferRequestDAOImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +39,8 @@
       <list>
         <option value="AnnotationType" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -47,15 +52,107 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2OL5Kao0MWHIHbvJuqrRo2C5raO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="System.IMS.entity" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="System.IMS.repository.activityLogDao" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ImsApplication">
+    <configuration name="ImsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="System.IMS.ImsApplication" />
+      <module name="IMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="System.IMS.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivityLogDaoImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="System.IMS.repository.activityLogDao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="System.IMS.repository.activityLogDao" />
+      <option name="MAIN_CLASS_NAME" value="System.IMS.repository.activityLogDao.ActivityLogDaoImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivityLogDaoImplTest.testFindAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="System.IMS.repository.activityLogDao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="System.IMS.repository.activityLogDao" />
+      <option name="MAIN_CLASS_NAME" value="System.IMS.repository.activityLogDao.ActivityLogDaoImplTest" />
+      <option name="METHOD_NAME" value="testFindAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImsApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="System.IMS.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="System.IMS" />
+      <option name="MAIN_CLASS_NAME" value="System.IMS.ImsApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ImsApplication" />
+        <item itemvalue="JUnit.ActivityLogDaoImplTest" />
+        <item itemvalue="JUnit.ImsApplicationTests" />
+        <item itemvalue="JUnit.ActivityLogDaoImplTest.testFindAll" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -73,7 +170,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681207673770</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Version 1.1">
+      <created>1681214751643</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681214751643</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Version 1.2">
+      <created>1681384904913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681384904913</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -89,6 +200,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Version 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0" />
+    <MESSAGE value="Version 1.1" />
+    <MESSAGE value="Version 1.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.2" />
   </component>
 </project>

@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 @Transactional
 public class BillOfMaterialsDaoImpl implements BillOfMaterialsDao {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
