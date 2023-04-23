@@ -1,6 +1,9 @@
 package System.IMS.repository.billOfMateriaalsDao;
 
 import System.IMS.entity.BillOfMaterials;
+import jakarta.persistence.criteria.CriteriaQuery;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,54 +22,43 @@ import java.util.List;
 @Repository
 @Transactional
 public class BillOfMaterialsDaoImpl implements BillOfMaterialsDao {
-    private final JdbcTemplate jdbcTemplate;
-
+    private final SessionFactory sessionFactory;
     @Autowired
-    public BillOfMaterialsDaoImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    public BillOfMaterialsDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
     public BillOfMaterials save(BillOfMaterials billOfMaterials) {
-        String sql = "INSERT INTO bill_of_materials (name, quantity) VALUES (?, ?)";
-        jdbcTemplate.update(sql, billOfMaterials.getName(), billOfMaterials.getQuantity());
+        Session session = sessionFactory.getCurrentSession();
+        session.save(billOfMaterials);
         return billOfMaterials;
     }
 
     @Override
     public BillOfMaterials findById(Long id) {
-        String sql = "SELECT * FROM bill_of_materials WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new BillOfMaterialsMapper(), id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(BillOfMaterials.class, id);
     }
 
     @Override
     public List<BillOfMaterials> findAll() {
-        String sql = "SELECT * FROM bill_of_materials";
-        return jdbcTemplate.query(sql, new BillOfMaterialsMapper());
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaQuery<BillOfMaterials> query = session.getCriteriaBuilder().createQuery(BillOfMaterials.class);
+        query.from(BillOfMaterials.class);
+        return session.createQuery(query).getResultList();
     }
 
     @Override
     public BillOfMaterials update(BillOfMaterials billOfMaterials) {
-        String sql = "UPDATE bill_of_materials SET name = ?, quantity = ? WHERE id = ?";
-        jdbcTemplate.update(sql, billOfMaterials.getName(), billOfMaterials.getQuantity(), billOfMaterials.getId());
+        Session session = sessionFactory.getCurrentSession();
+        session.update(billOfMaterials);
         return billOfMaterials;
     }
 
     @Override
     public void delete(BillOfMaterials billOfMaterials) {
-        String sql = "DELETE FROM bill_of_materials WHERE id = ?";
-        jdbcTemplate.update(sql, billOfMaterials.getId());
-    }
-
-    private static class BillOfMaterialsMapper implements RowMapper<BillOfMaterials> {
-
-        @Override
-        public BillOfMaterials mapRow(ResultSet rs, int rowNum) throws SQLException {
-            BillOfMaterials billOfMaterials = new BillOfMaterials();
-            billOfMaterials.setId(rs.getLong("id"));
-            billOfMaterials.setName(rs.getString("name"));
-            billOfMaterials.setQuantity(rs.getInt("quantity"));
-            return billOfMaterials;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(billOfMaterials);
     }
 }

@@ -1,52 +1,62 @@
 package System.IMS.repository.transferRequestDao;
 
 import System.IMS.entity.TransferRequest;
+
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+
 import java.util.List;
 
 @Repository
 @Transactional
 public class TransferRequestDAOImpl implements TransferRequestDAO {
-    @PersistenceContext
-    private EntityManager entityManager;
+    private SessionFactory sessionFactory;
+    @Autowired
+    public TransferRequestDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public TransferRequest findById(Long id) {
-        return entityManager.find(TransferRequest.class, id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.find(TransferRequest.class, id);
     }
 
     @Override
     public List<TransferRequest> findAll() {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<TransferRequest> cq = cb.createQuery(TransferRequest.class);
         Root<TransferRequest> rootEntry = cq.from(TransferRequest.class);
         CriteriaQuery<TransferRequest> all = cq.select(rootEntry);
-        TypedQuery<TransferRequest> allQuery = entityManager.createQuery(all);
+        TypedQuery<TransferRequest> allQuery = session.createQuery(all);
         return allQuery.getResultList();
     }
 
     @Override
     public void save(TransferRequest transferRequest) {
-        entityManager.persist(transferRequest);
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(transferRequest);
     }
 
     @Override
     public void update(TransferRequest transferRequest) {
-        entityManager.merge(transferRequest);
+        Session session = sessionFactory.getCurrentSession();
+        session.merge(transferRequest);
     }
 
     @Override
     public void delete(TransferRequest transferRequest) {
-        entityManager.remove(entityManager.contains(transferRequest) ? transferRequest : entityManager.merge(transferRequest));
+        Session session = sessionFactory.getCurrentSession();
+        session.remove(session.contains(transferRequest) ? transferRequest : session.merge(transferRequest));
     }
 }
 

@@ -1,6 +1,11 @@
 package System.IMS.repository.alertDao;
 
 import System.IMS.entity.Alert;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -19,102 +24,39 @@ import java.util.List;
 @Repository
 @Transactional
 public class AlertDaoImpl implements AlertDao {
-    private final DataSource dataSource;
-
-    public AlertDaoImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Override
     public Alert save(Alert alert) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "INSERT INTO alert(type, content, timestamp) VALUES (?, ?, ?)",
-                     Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, alert.getType());
-            statement.setString(2, alert.getContent());
-            statement.setTimestamp(3, Timestamp.valueOf(alert.getTimestamp()));
-            statement.executeUpdate();
-
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                alert.setId(generatedKeys.getLong(1));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to save alert", e);
-        }
+        sessionFactory.getCurrentSession().save(alert);
         return alert;
     }
 
     @Override
     public Alert findById(Long id) {
-        Alert alert = null;
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * FROM alert WHERE id = ?")) {
-            statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                alert = new Alert();
-                alert.setId(resultSet.getLong("id"));
-                alert.setType(resultSet.getString("type"));
-                alert.setContent(resultSet.getString("content"));
-                alert.setTimestamp(resultSet.getTimestamp("timestamp").toLocalDateTime());
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to find alert by ID", e);
-        }
-        return alert;
+        return sessionFactory.getCurrentSession().get(Alert.class, id);
     }
 
     @Override
     public List<Alert> findAll() {
-        List<Alert> alerts = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * FROM alert")) {
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                Alert alert = new Alert();
-                alert.setId(resultSet.getLong("id"));
-                alert.setType(resultSet.getString("type"));
-                alert.setContent(resultSet.getString("content"));
-                alert.setTimestamp(resultSet.getTimestamp("timestamp").toLocalDateTime());
-                alerts.add(alert);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to find all alerts", e);
-        }
-        return alerts;
+        CriteriaBuilder cb = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<Alert> cq = cb.createQuery(Alert.class);
+        Root<Alert> root = cq.from(Alert.class);
+        cq.select(root);
+        Query<Alert> query = sessionFactory.getCurrentSession().createQuery(cq);
+        return query.getResultList();
     }
 
     @Override
     public Alert update(Alert alert) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "UPDATE alert SET type = ?, content = ?, timestamp = ? WHERE id = ?")) {
-            statement.setString(1, alert.getType());
-            statement.setString(2, alert.getContent());
-            statement.setTimestamp(3, Timestamp.valueOf(alert.getTimestamp()));
-            statement.setLong(4, alert.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to update alert", e);
-        }
+        sessionFactory.getCurrentSession().update(alert);
         return alert;
     }
 
     @Override
     public void delete(Alert alert) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     "DELETE FROM alert WHERE id = ?")) {
-            statement.setLong(1, alert.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to delete alert", e);
-        }
+        sessionFactory.getCurrentSession().delete(alert);
     }
+
 }
