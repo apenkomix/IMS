@@ -1,7 +1,7 @@
 package System.IMS.entity;
 
 import javax.persistence.*;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "forecast")
@@ -17,12 +17,13 @@ public class Forecast {
     private String content;
 
     @Column(name = "timestamp")
-    private Timestamp timestamp;
+    private java.sql.Timestamp timestamp;
 
     public Forecast() {
     }
 
-    public Forecast(String type, String content, Timestamp timestamp) {
+    public Forecast(Long id, String type, String content, Timestamp timestamp) {
+        this.id = id;
         this.type = type;
         this.content = content;
         this.timestamp = timestamp;
@@ -52,11 +53,11 @@ public class Forecast {
         this.content = content;
     }
 
-    public Timestamp getTimestamp() {
+    public java.sql.Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(java.sql.Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 }

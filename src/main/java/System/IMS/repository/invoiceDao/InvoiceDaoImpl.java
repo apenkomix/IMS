@@ -1,6 +1,9 @@
 package System.IMS.repository.invoiceDao;
 
 import System.IMS.entity.Invoice;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,40 +16,48 @@ import java.util.List;
 @Repository
 @Transactional
 public class InvoiceDaoImpl implements InvoiceDao {
-    @PersistenceContext
-    private EntityManager entityManager;
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public InvoiceDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public List<Invoice> getAllInvoices() {
-        String jpql = "SELECT i FROM Invoice i";
-        TypedQuery<Invoice> query = entityManager.createQuery(jpql, Invoice.class);
+        Session session = sessionFactory.getCurrentSession();
+        Query<Invoice> query = session.createQuery("FROM Invoice", Invoice.class);
         return query.getResultList();
     }
 
     @Override
     public Invoice getInvoiceById(Long id) {
-        return entityManager.find(Invoice.class, id);
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Invoice.class, id);
     }
 
     @Override
     public void addInvoice(Invoice invoice) {
-        entityManager.persist(invoice);
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(invoice);
     }
 
     @Override
     public void updateInvoice(Invoice invoice) {
-        entityManager.merge(invoice);
+        Session session = sessionFactory.getCurrentSession();
+        session.merge(invoice);
     }
 
     @Override
     public void deleteInvoice(Invoice invoice) {
-        entityManager.remove(invoice);
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(invoice);
     }
 
     @Override
     public List<Invoice> getInvoicesByStatus(String status) {
-        String jpql = "SELECT i FROM Invoice i WHERE i.status = :status";
-        TypedQuery<Invoice> query = entityManager.createQuery(jpql, Invoice.class);
+        Session session = sessionFactory.getCurrentSession();
+        Query<Invoice> query = session.createQuery("FROM Invoice WHERE status = :status", Invoice.class);
         query.setParameter("status", status);
         return query.getResultList();
     }

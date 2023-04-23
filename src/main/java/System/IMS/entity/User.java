@@ -16,9 +16,9 @@ public class User {
     private String password;
 
     // Constructors, getters, and setters
-
-    public User(String s) {
+    public User(long user_id){
     }
+
 
     public User(String name, String username, String password) {
         this.name = name;

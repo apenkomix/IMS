@@ -7,13 +7,15 @@ import System.IMS.entity.User;
 import java.util.List;
 
 public interface ActivityLogDao {
-    ActivityLog save(ActivityLog activityLog);
+    void save(ActivityLog activityLog);
 
     ActivityLog findById(Long id);
 
     List<ActivityLog> findAll();
 
-    List<ActivityLog> findByUser(User user);
+    ActivityLog update(ActivityLog activityLog);
 
     void delete(ActivityLog activityLog);
+
+    List<ActivityLog> findByUser(User user);
 }

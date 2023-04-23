@@ -2,53 +2,57 @@ package System.IMS.repository.activityLogDao;
 
 import System.IMS.entity.ActivityLog;
 import System.IMS.entity.User;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 @Transactional
 public class ActivityLogDaoImpl implements ActivityLogDao {
+    private final HibernateTemplate hibernateTemplate;
 
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
+    @Autowired
+    public ActivityLogDaoImpl(SessionFactory sessionFactory) {
+        this.hibernateTemplate = new HibernateTemplate(sessionFactory);
+    }
 
     @Override
-    public ActivityLog save(ActivityLog activityLog) {
-        entityManager.persist(activityLog);
-        return activityLog;
+    public void save(ActivityLog activityLog) {
+        hibernateTemplate.save(activityLog);
     }
 
     @Override
     public ActivityLog findById(Long id) {
-        return entityManager.find(ActivityLog.class, id);
+        return hibernateTemplate.get(ActivityLog.class, id);
     }
 
     @Override
     public List<ActivityLog> findAll() {
-        TypedQuery<ActivityLog> query = entityManager.createQuery("SELECT a FROM ActivityLog a", ActivityLog.class);
-        return query.getResultList();
+        return hibernateTemplate.loadAll(ActivityLog.class);
     }
 
     @Override
-    public List<ActivityLog> findByUser(User user) {
-        TypedQuery<ActivityLog> query = entityManager.createQuery("SELECT a FROM ActivityLog a WHERE a.user = :user", ActivityLog.class);
-        query.setParameter("user", user);
-        return query.getResultList();
+    public ActivityLog update(ActivityLog activityLog) {
+        hibernateTemplate.update(activityLog);
+        return activityLog;
     }
 
     @Override
     public void delete(ActivityLog activityLog) {
-        entityManager.remove(activityLog);
+        hibernateTemplate.delete(activityLog);
+    }
+
+    @Override
+    public List<ActivityLog> findByUser(User user) {
+        String sql = "SELECT * FROM activity_log WHERE user_id = :userId";
+        Query query = hibernateTemplate.getSessionFactory().getCurrentSession().createNativeQuery(sql, ActivityLog.class);
+        query.setParameter("userId", user.getId());
+        List<ActivityLog> activityLogs = query.getResultList();
+        return activityLogs;
     }
 }

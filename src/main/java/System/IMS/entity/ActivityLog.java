@@ -14,10 +14,12 @@ public class ActivityLog {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "activity_type")
     private String activity;
 
-    @Column(name = "timestamp", columnDefinition = "TIMESTAMP")
+    @Column(name = "activity_time", columnDefinition = "TIMESTAMP")
     private LocalDateTime timestamp;
+
 
     // constructors, getters and setters
 
